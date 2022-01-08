@@ -9,7 +9,7 @@ class AddTask extends Component {
    render() {
       return (
          <form>
-            <h3>Dodaj zadanie</h3>
+            <h2>Dodaj zadanie</h2>
          </form>
       )
    }

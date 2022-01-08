@@ -11,7 +11,7 @@ class App extends Component {
             text: 'Zmienić koła na zimowe',
             date: '2022-02-01',
             important: true,
-            active: false,
+            active: true,
             endDate: null
          },
          {
@@ -49,14 +49,49 @@ class App extends Component {
       ]
    }
 
+   handleChange = id => {
+      const tasks = [...this.state.tasks];
+      tasks.forEach(task => {
+         if (task.id === id) {
+            task.active = false;
+            task.date = new Date().getTime();
+         }
+      })
+
+      this.setState({
+         tasks
+      })
+   }
+
+   handleDelete = id => {
+      const tasks = [...this.state.tasks];
+      const index = tasks.findIndex(task => task.id === id)
+
+      tasks.splice(index, 1);
+
+      this.setState({
+         tasks
+      })
+   }
+
    render() {
       return (
          <div className="app">
+
             <h3>ToDo App</h3>
+
             <hr />
+
             <AddTask />
+
             <hr />
-            <TaskList tasks={this.state.tasks} />
+
+            <TaskList
+               tasks={this.state.tasks}
+               change={this.handleChange}
+               delete={this.handleDelete}
+            />
+
          </div>
       )
    }
