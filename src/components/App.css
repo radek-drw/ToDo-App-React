@@ -1,0 +1,16 @@
+* {
+   text-align: center;
+}
+button {
+   border: 1px solid #f6f6f6;
+   border-radius: 2px;
+   padding: 2px 5px;
+   cursor: pointer;
+}
+button:last-of-type {
+   margin-left: 5px;
+}
+
+div {
+   margin: 6px 0;
+}
