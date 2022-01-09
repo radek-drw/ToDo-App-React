@@ -36,7 +36,7 @@ const TaskList = props => {
          <div className="done">
             <h2>Zrobione ({done.length})</h2>
             {done.length > 3 && <p style={{ fontSize: 12 }} >Wyświetlane są tylko 3 zadania</p>}
-            {doneTask.splice(0, 3)}
+            {doneTask.slice(0, 3)}
          </div>
       </>
    );

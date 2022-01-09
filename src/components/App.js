@@ -18,7 +18,7 @@ class App extends Component {
             id: 1,
             text: 'Umówić wizytę u dermatologa',
             date: '2022-04-28',
-            important: true,
+            important: false,
             active: true,
             endDate: null
          },
@@ -26,7 +26,7 @@ class App extends Component {
             id: 2,
             text: 'Oddać auto do lakiernika',
             date: '2018-06-30',
-            important: true,
+            important: false,
             active: true,
             endDate: null
          },
@@ -42,7 +42,7 @@ class App extends Component {
             id: 4,
             text: 'Wreszcie zacząć szukać pracy jako fron endowiec',
             date: '2019-12-01',
-            important: true,
+            important: false,
             active: true,
             endDate: null
          },
@@ -54,7 +54,7 @@ class App extends Component {
       tasks.forEach(task => {
          if (task.id === id) {
             task.active = false;
-            task.date = new Date().getTime();
+            task.endDate = new Date().getTime();
          }
       })
 
