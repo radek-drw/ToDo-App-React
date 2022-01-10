@@ -1,0 +1,26 @@
+label {
+   display: block;
+   padding: 5px;
+}
+label:first-of-type {
+   display: inline;
+}
+
+input {
+   background-color: #f6f6f6;
+   color: #000;
+   text-align: left;
+   padding: 0 3px;
+}
+input[type="checkbox"] {
+   margin: 0 10px;
+}
+
+input[type="date"] {
+   margin-left: 10px;
+}
+
+.form button {
+   padding: 4px 18px;
+   margin-top: 5px;
+}

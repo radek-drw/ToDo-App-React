@@ -4,6 +4,8 @@ import TaskList from './TaskList';
 import './App.css';
 
 class App extends Component {
+   counter = 6;
+
    state = {
       tasks: [
          {
@@ -49,6 +51,24 @@ class App extends Component {
       ]
    }
 
+   addTask = (text, date, important) => {
+      const task = {
+         id: this.counter,
+         text,
+         date,
+         important,
+         active: true,
+         endDate: null
+      }
+      this.counter++;
+
+      this.setState(prevState => ({
+         tasks: [...prevState.tasks, task]
+      }))
+
+      return true
+   }
+
    handleChange = id => {
       const tasks = [...this.state.tasks];
       tasks.forEach(task => {
@@ -82,7 +102,9 @@ class App extends Component {
 
             <hr />
 
-            <AddTask />
+            <AddTask
+               add={this.addTask}
+            />
 
             <hr />
 
