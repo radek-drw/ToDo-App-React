@@ -12,21 +12,21 @@ class AddTask extends Component {
    }
 
    handleChange = e => {
-      this.setState({
-         text: e.target.value
-      })
-   }
+      const type = e.target.type;
 
-   handleChekbox = e => {
-      this.setState({
-         checked: e.target.checked
-      })
-   }
-
-   handleDate = e => {
-      this.setState({
-         date: e.target.value
-      })
+      if (type === 'text') {
+         this.setState({
+            text: e.target.value
+         })
+      } else if (type === 'checkbox') {
+         this.setState({
+            checked: e.target.checked
+         })
+      } else if (type === 'date') {
+         this.setState({
+            date: e.target.value
+         })
+      }
    }
 
    handleClick = () => {
@@ -65,7 +65,7 @@ class AddTask extends Component {
                   type="checkbox"
                   id='important'
                   checked={this.state.checked}
-                  onChange={this.handleChekbox}
+                  onChange={this.handleChange}
                />Priorytet
             </label>
             <label htmlFor="date">Do kiedy zrobić
@@ -75,7 +75,7 @@ class AddTask extends Component {
                   value={this.state.date}
                   min={this.minDate}
                   max={maxDate}
-                  onChange={this.handleDate}
+                  onChange={this.handleChange}
                />
             </label>
             <button onClick={this.handleClick}>Dodaj</button>

@@ -66,7 +66,7 @@ class App extends Component {
          tasks: [...prevState.tasks, task]
       }))
 
-      return true
+      return true;
    }
 
    handleChange = id => {
