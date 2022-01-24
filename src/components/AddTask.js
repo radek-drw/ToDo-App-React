@@ -43,7 +43,7 @@ class AddTask extends Component {
             })
          }
       } else {
-         console.log('Za krótka nazwa');
+         alert('Task name too short')
       }
    }
 
@@ -53,10 +53,10 @@ class AddTask extends Component {
 
       return (
          <div className="form">
-            <h2>Dodaj zadanie</h2>
+            <h2>Add task</h2>
             <input
                type="text"
-               placeholder='dadaj zadanie'
+               placeholder='Type task...'
                value={this.state.text}
                onChange={this.handleChange}
             />
@@ -66,9 +66,9 @@ class AddTask extends Component {
                   id='important'
                   checked={this.state.checked}
                   onChange={this.handleChange}
-               />Priorytet
+               />Priority
             </label>
-            <label htmlFor="date">Do kiedy zrobić
+            <label htmlFor="date">End date
                <input
                   type="date"
                   id='date'
@@ -78,7 +78,7 @@ class AddTask extends Component {
                   onChange={this.handleChange}
                />
             </label>
-            <button onClick={this.handleClick}>Dodaj</button>
+            <button onClick={this.handleClick}>Add</button>
          </div>
       )
    }

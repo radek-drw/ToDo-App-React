@@ -48,15 +48,15 @@ const TaskList = props => {
    return (
       <>
          <div className="active">
-            <h2>Zadania do zrobienia</h2>
-            {activeTask.length ? activeTask : <h4>Hurra, nie masz nic do zrobienia!!!!!!!</h4>}
+            <h2>Tasks to be done</h2>
+            {activeTask.length ? activeTask : <h4>Hurray, you've got nothing to do!!!!!!!</h4>}
          </div>
 
          <hr />
 
          <div className="done">
-            <h2>Zrobione ({done.length})</h2>
-            {done.length > 3 && <p style={{ fontSize: 12 }} >Wyświetlane są tylko 3 zadania</p>}
+            <h2>Done ({done.length})</h2>
+            {done.length > 3 && <p style={{ fontSize: 12 }} >Only 3 tasks showed</p>}
             {doneTask.slice(0, 3)}
          </div>
       </>

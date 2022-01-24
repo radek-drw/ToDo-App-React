@@ -11,7 +11,7 @@ const Task = props => {
 		return (
 			<div>
 				<p>
-					<strong style={important ? style : null}>{text}</strong> - do {date} <button onClick={() => props.change(id)}>Zostało zrobione</button><button onClick={() => props.delete(id)}>X</button>
+					<strong style={important ? style : null}>{text}</strong> - until {date} <button onClick={() => props.change(id)}>Done</button><button onClick={() => props.delete(id)}>X</button>
 				</p>
 			</div>
 		);
@@ -21,9 +21,9 @@ const Task = props => {
 		return (
 			<div>
 				<p>
-					<strong>{text}</strong> <em>(zrobić do {date})</em>
+					<strong>{text}</strong> <em>(final date {date})</em>
 					<br />
-					<span>- potwierdzenie wykonania {finish}</span>
+					<span>- confirmed  {finish}</span>
 					<button onClick={() => props.delete(id)}>X</button>
 				</p>
 			</div>
