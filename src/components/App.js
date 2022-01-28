@@ -1,81 +1,71 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import AddTask from './AddTask';
 import TaskList from './TaskList';
-import './App.css';
+import '../styles/App.css';
 
-class App extends Component {
-   counter = 0;
+let counter = 0;
 
-   state = {
-      tasks: []
-   }
+const App = () => {
 
-   addTask = (text, date, important) => {
+   const [tasks, setTasks] = useState([]);
+
+   const addTask = (text, date, important) => {
       const task = {
-         id: this.counter,
+         id: counter,
          text,
          date,
          important,
          active: true,
          endDate: null
       }
-      this.counter++;
+      counter++;
 
-      this.setState(prevState => ({
-         tasks: [...prevState.tasks, task]
-      }))
+      setTasks(tasks.concat(task))
 
       return true;
    }
 
-   handleChange = id => {
-      const tasks = [...this.state.tasks];
-      tasks.forEach(task => {
+   const handleChange = id => {
+      const taskss = [...tasks];
+      taskss.forEach(task => {
          if (task.id === id) {
             task.active = false;
             task.endDate = new Date().getTime();
          }
       })
-
-      this.setState({
-         tasks
-      })
+      setTasks(taskss)
    }
 
-   handleDelete = id => {
-      const tasks = [...this.state.tasks];
+   const handleDelete = id => {
+      const taskss = [...tasks];
       const index = tasks.findIndex(task => task.id === id)
 
       tasks.splice(index, 1);
 
-      this.setState({
-         tasks
-      })
+      setTasks(taskss)
    }
 
-   render() {
-      return (
-         <div className="app">
+   return (
+      <div className="app">
 
-            <h3>ToDo App</h3>
+         <h3>ToDo App</h3>
 
-            <hr />
+         <hr />
 
-            <AddTask
-               add={this.addTask}
-            />
+         <AddTask
+            add={addTask}
+         />
 
-            <hr />
+         <hr />
 
-            <TaskList
-               tasks={this.state.tasks}
-               change={this.handleChange}
-               delete={this.handleDelete}
-            />
+         <TaskList
+            tasks={tasks}
+            change={handleChange}
+            delete={handleDelete}
+         />
 
-         </div>
-      )
-   }
+      </div>
+   )
 }
 
 export default App;
