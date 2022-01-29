@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AddTask from './AddTask';
 import TaskList from './TaskList';
 import '../styles/App.css';
+import { TaskContext } from './TaskContext';
 
 let counter = 0;
 
@@ -26,23 +27,23 @@ const App = () => {
    }
 
    const handleChange = id => {
-      const taskss = [...tasks];
-      taskss.forEach(task => {
+      const tasksCopy = [...tasks];
+      tasksCopy.forEach(task => {
          if (task.id === id) {
             task.active = false;
             task.endDate = new Date().getTime();
          }
       })
-      setTasks(taskss)
+      setTasks(tasksCopy)
    }
 
    const handleDelete = id => {
-      const taskss = [...tasks];
+      const tasksCopy = [...tasks];
       const index = tasks.findIndex(task => task.id === id)
 
-      tasks.splice(index, 1);
+      tasksCopy.splice(index, 1);
 
-      setTasks(taskss)
+      setTasks(tasksCopy)
    }
 
    return (
@@ -58,11 +59,11 @@ const App = () => {
 
          <hr />
 
-         <TaskList
-            tasks={tasks}
-            change={handleChange}
-            delete={handleDelete}
-         />
+         <TaskContext.Provider value={{ handleChange, handleDelete }}>
+            <TaskList
+               tasks={tasks}
+            />
+         </TaskContext.Provider>
 
       </div>
    )

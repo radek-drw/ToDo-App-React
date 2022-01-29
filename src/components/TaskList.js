@@ -6,7 +6,6 @@ const TaskList = props => {
    const active = props.tasks.filter(task => task.active);
    const done = props.tasks.filter(task => !task.active);
 
-
    if (active.length > 2) {
       active.sort((a, b) => {
 
