@@ -1,87 +1,69 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import '../styles/AddTask.css';
 
-class AddTask extends Component {
+const AddTask = props => {
 
-   minDate = new Date().toISOString().slice(0, 10);
+   const minDate = new Date().toISOString().slice(0, 10);
 
-   state = {
-      text: '',
-      checked: false,
-      date: this.minDate
-   }
+   const [text, setText] = useState('');
+   const [checked, setChecked] = useState(false);
+   const [date, setDate] = useState(minDate);
 
-   handleChange = e => {
+   const handleChange = e => {
       const type = e.target.type;
 
-      if (type === 'text') {
-         this.setState({
-            text: e.target.value
-         })
-      } else if (type === 'checkbox') {
-         this.setState({
-            checked: e.target.checked
-         })
-      } else if (type === 'date') {
-         this.setState({
-            date: e.target.value
-         })
-      }
+      if (type === 'text') setText(e.target.value)
+      else if (type === 'checkbox') setChecked(e.target.checked)
+      else if (type === 'date') setDate(e.target.value)
    }
 
-   handleClick = () => {
-      const { text, checked, date } = this.state;
-
+   const handleClick = () => {
       if (text.length > 2) {
-         const add = this.props.add(text, date, checked);
+         const add = props.add(text, date, checked);
 
          if (add) {
-            this.setState({
-               text: '',
-               checked: false,
-               date: this.minDate
-            })
+            setText('');
+            setChecked(false);
+            setDate(minDate);
          }
       } else {
          alert('Task name too short')
       }
    }
 
-   render() {
-      let maxDate = this.minDate.slice(0, 4) * 1 + 1;
-      maxDate = maxDate + '-12-31';
+   let maxDate = minDate.slice(0, 4) * 1 + 1;
+   maxDate = maxDate + '-12-31';
 
-      return (
-         <div className="form">
-            <h2>Add task</h2>
+   return (
+      <div className="form">
+         <h2>Add task</h2>
+         <input
+            type="text"
+            placeholder='Type task...'
+            value={text}
+            onChange={handleChange}
+         />
+         <label htmlFor="important">
             <input
-               type="text"
-               placeholder='Type task...'
-               value={this.state.text}
-               onChange={this.handleChange}
+               type="checkbox"
+               id='important'
+               checked={checked}
+               onChange={handleChange}
+            />Priority
+         </label>
+         <label htmlFor="date">End date
+            <input
+               type="date"
+               id='date'
+               value={date}
+               min={minDate}
+               max={maxDate}
+               onChange={handleChange}
             />
-            <label htmlFor="important">
-               <input
-                  type="checkbox"
-                  id='important'
-                  checked={this.state.checked}
-                  onChange={this.handleChange}
-               />Priority
-            </label>
-            <label htmlFor="date">End date
-               <input
-                  type="date"
-                  id='date'
-                  value={this.state.date}
-                  min={this.minDate}
-                  max={maxDate}
-                  onChange={this.handleChange}
-               />
-            </label>
-            <button onClick={this.handleClick}>Add</button>
-         </div>
-      )
-   }
+         </label>
+         <button onClick={handleClick}>Add</button>
+      </div>
+   )
 }
 
 export default AddTask;
