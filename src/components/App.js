@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+
 import AddTask from './AddTask';
 import TaskList from './TaskList';
-import '../styles/App.css';
 import { TaskContext } from './TaskContext';
+
+import '../styles/App.css';
 
 let counter = 0;
 

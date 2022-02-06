@@ -6,6 +6,7 @@ const TaskList = props => {
    const active = props.tasks.filter(task => task.active);
    const done = props.tasks.filter(task => !task.active);
 
+   // Sort by task name
    if (active.length > 2) {
       active.sort((a, b) => {
 
@@ -18,6 +19,7 @@ const TaskList = props => {
       })
    }
 
+   // Sort by task done date and time
    if (done.length > 2) {
       done.sort((a, b) => {
          if (a.endDate < b.endDate) return 1;
